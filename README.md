@@ -8,7 +8,7 @@
 
 The workflow driver is a json record (access-request.json) that defines parameters for a software project's read-only access to a CyberArk PAS Safe and its accounts. The access request has several parts:
  - Vault, LOB member, Safe and project names
- - identities - an array of new or existing Conjur application identities in "!host <name>" format.
+ - identities - an array of new or existing Conjur application identities in "!host foo" format.
  - accountRequests - an array of account parameters to use in provisioning accounts in a new safe.
 
 The request is processed as follows:
