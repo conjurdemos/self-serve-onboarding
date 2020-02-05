@@ -1,0 +1,39 @@
+{
+  "vaultName": "DemoVault",
+  "cpmName": "PasswordManager",
+  "lobName": "CICD",
+  "requestor": "Jody Hunt",
+  "projectName": "ProjectSWA",
+  "safeName": "ProjectSWA",
+  "identities": [
+    {
+      "identity": "!host swa-svc-acct"
+    }
+  ],
+  "accountRequests": [
+    {
+      "accountName": "WinServerAcct",
+      "platformId": "WinServerLocal",
+      "address": "WIN-T4KRGHVATN4",
+      "userName": "mdamon",
+      "secretType": "password",
+      "secretValue": "notjbourne"
+    },
+    {
+      "accountName": "OracleDB-Dev",
+      "platformId": "Oracle",
+      "address": "",
+      "userName": "galgadot",
+      "secretType": "password",
+      "secretValue": "wonderwoman"
+    },
+    {
+      "accountName": "SQLServer-Dev",
+      "platformId": "MsSQL",
+      "address": "",
+      "userName": "jfavreau",
+      "secretType": "password",
+      "secretValue": "somoney"
+    }
+  ]
+}

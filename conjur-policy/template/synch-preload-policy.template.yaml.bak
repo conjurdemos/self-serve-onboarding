@@ -1,0 +1,40 @@
+---
+# Pre-loaded synchronizer policies for a project.
+# All secrets for the project are in {{ PAS_SAFE_NAME }}
+# Before synchronizer runs, host identity is granted consumer role for secrets.
+
+#########################
+# Vault RBAC
+# - updates vault policy with LOB admin group
+- !policy
+  id: {{ PAS_VAULT_NAME }}
+  body:
+  - !group {{ PAS_LOB_NAME }}-admins
+
+  #########################
+  # LOB RBAC
+  # - creates LOB policy owned by LOB admin group
+  # - creates safe admin group
+  - !policy
+    id: {{ PAS_LOB_NAME }}
+    owner: !group /{{ PAS_VAULT_NAME }}/{{ PAS_LOB_NAME }}-admins
+    body:
+    - !group {{ PAS_SAFE_NAME }}-admins
+
+    #########################
+    # Safe RBAC
+    # - creates empty sub-policy for safe
+    # - creates delegation sub-policy w/ consumers group 
+    - !policy
+      id: {{ PAS_SAFE_NAME }}
+      body:
+      - !policy
+        id: delegation
+        owner: !group /{{ PAS_VAULT_NAME }}/{{ PAS_LOB_NAME }}/{{ PAS_SAFE_NAME }}-admins
+        body:
+        - !group consumers
+
+# grant safe consumer role to a Conjur role (host/layer/user/group)
+- !grant
+  role: !group {{ PAS_VAULT_NAME }}/{{ PAS_LOB_NAME }}/{{ PAS_SAFE_NAME }}/delegation/consumers
+  member: {{ CONJUR_SAFE_CONSUMER_IDENTITY }}

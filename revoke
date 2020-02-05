@@ -1,0 +1,31 @@
+#!/bin/bash
+
+source ./onboard-demo.config
+
+PAS_VAULT_NAME=$(cat $ACCESS_REQUEST_JSON_FILE | jq -r .vaultName)
+PAS_LOB_NAME=$(cat $ACCESS_REQUEST_JSON_FILE | jq -r .lobName)
+PAS_SAFE_NAME=$(cat $ACCESS_REQUEST_JSON_FILE | jq -r .safeName)
+
+i=1
+conjur_identity=$(cat $ACCESS_REQUEST_JSON_FILE | jq -r .identities[].identity | tr \\n \\t | cut -f$i)
+while [[ "$conjur_identity" != "" ]];  do
+    # remove spaces and slashes in filename
+    id_name=$(echo $conjur_identity | sed -e "s#!##"g | sed -e "s# #-#"g | sed -e "s#/#_#"g)
+    policy_fname=./conjur-policy/consumer-revoke-policy-$PAS_SAFE_NAME-$id_name.yaml
+
+    # Instantiate policy template with this access request info
+    sed -e "s#{{ PAS_VAULT_NAME }}#$PAS_VAULT_NAME#g" \
+	"./conjur-policy/template/identity-consumer-revoke-policy.template.yaml" |
+      sed -e "s#{{ PAS_LOB_NAME }}#$PAS_LOB_NAME#g" |
+      sed -e "s#{{ PAS_SAFE_NAME }}#$PAS_SAFE_NAME#g" |
+      sed -e "s#{{ CONJUR_SAFE_CONSUMER_IDENTITY }}#$conjur_identity#g" \
+      > $policy_fname
+
+    load_policy_REST.sh root $policy_fname delete > /dev/null
+
+    echo
+    echo "Access to safe $PAS_SAFE_NAME in vault $PAS_VAULT_NAME revoked for \"$conjur_identity\"."
+    echo
+    let i=i+1
+    conjur_identity=$(cat $ACCESS_REQUEST_JSON_FILE | jq -r .identities[].identity | tr \\n \\t | cut -f$i)
+done
