@@ -1,10 +1,10 @@
 # self-serve-onboarding
 
-### End-users of secrets management solutions want their access requests processed as quickly as possible.
+#### - End-users of secrets management solutions want their access requests processed as quickly as possible.
 
-### Security teams don't want a lot of extra work processing access requests, but they can't sacrifice good security hygiene.
+#### - Security teams don't want a lot of extra work processing access requests, but they can't sacrifice good security hygiene.
 
-This prototype is a step towards satisfying both constituencies. It accepts as input a json record (access-request.json) that defines parameters for a software project's read-only access to a CyberArk PAS Safe and its accounts. The access request has several parts:
+#### - This prototype is a step towards satisfying both constituencies. It accepts as input a json record (access-request.json) that defines parameters for a software project's read-only access to a CyberArk PAS Safe and its accounts. The access request has several parts:
  - Vault, LOB member, Safe and project names
  - identities - an array of new or existing Conjur application identities in "!host <name>" format.
  - accountRequests - an array of account parameters to use in provisioning accounts in a new safe.
