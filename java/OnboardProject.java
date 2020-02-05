@@ -33,7 +33,7 @@ public class OnboardProject {
 	PASJava.DEBUG=false;
 	DAPJava.DEBUG=false;
 	JavaREST.DEBUG=false;
-	OnboardProject.DEBUG=true;
+	OnboardProject.DEBUG=false;
 
 	// turn off all cert validation - FOR DEMO ONLY
 	disableSSL(); 
@@ -81,14 +81,12 @@ public class OnboardProject {
     //
     public static void processAccessRequest(AccessRequest _accessRequest) {
 
-	// add Safe and populate it if it doesn't exist
-	PASSafe newSafe = addSafe(_accessRequest);
+	PASSafe newSafe = addSafe(_accessRequest);// add Safe if it doesn't exist
 	if (newSafe != null) {
-	    addMembers(_accessRequest);
-	    addAccounts(_accessRequest);
+	    addAccounts(_accessRequest);	// provision accounts in new safe
 	}
-	// Apply Vault/Conjur sync policies
-	applyPolicy(_accessRequest);
+	addMembers(_accessRequest);	// add LOB and Administrator members
+	applyPolicy(_accessRequest);	// Apply Vault/Conjur sync policies
 
 	addIdentities(_accessRequest);
 
@@ -136,10 +134,12 @@ public class OnboardProject {
 	String _lobName = _accessRequest.lobName;
 	String _safeName = _accessRequest.safeName;
 
-        System.out.println("Preloading sync policy:\n"
+	if (OnboardProject.DEBUG) {
+            System.out.println("Preloading sync policy:\n"
 			 + "  Vault name: " + _vaultName + "\n"
 			 + "  LOB name: " + _lobName + "\n"
 			 + "  Safe name: " +_safeName);
+	}
 
         DAPJava.initConnection(
                                 System.getenv("CONJUR_APPLIANCE_URL"),
