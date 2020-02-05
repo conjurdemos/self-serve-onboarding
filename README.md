@@ -1,10 +1,10 @@
 # self-serve-onboarding
 
-#### - End-users want secrets access requests processed as quickly as possible.
+#### * End-users want access to secrets without a lot of hassle.
 
-#### - Security teams don't want a lot of extra work, but they can't sacrifice good security hygiene.
+#### * Security teams don't want a lot of extra work, but they can't sacrifice good security hygiene.
 
-#### - This prototype is a step towards satisfying both constituencies. 
+#### This prototype is a step towards satisfying both. 
 
 The workflow driver is a json record (access-request.json) that defines parameters for a software project's read-only access to a CyberArk PAS Safe and its accounts. The access request has several parts:
  - Vault, LOB member, Safe and project names
