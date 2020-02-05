@@ -1,3 +1,6 @@
 *.class
-*.jar
+java/*.jar
+java/javarest/*.jar
+java/pas/*.jar
+java/dap/*.jar
 conjur-policy/*.yaml
