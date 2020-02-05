@@ -1,8 +1,8 @@
 # self-serve-onboarding
 
-#### * End-users want access to secrets without a lot of hassle.
+#### End-users want access to secrets without a lot of hassle.
 
-#### * Security teams don't want a lot of extra work, but they can't sacrifice good security hygiene.
+#### Security teams don't want a lot of extra work, but they can't sacrifice good security hygiene.
 
 #### This prototype is a step towards satisfying both. 
 
