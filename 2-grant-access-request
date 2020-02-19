@@ -1,9 +1,12 @@
 #!/bin/bash
-
 source ./onboard-demo.config
+
+if [[ $# != 1 ]]; then echo "Usage: $0 <access-request-filename>"; exit -1; fi
+export fileName=$1
 
 main() {
   clear
+  ./_git-rest.sh merge $fileName
   create_safe_accounts_identities
   load_policies
 }

@@ -1,0 +1,8 @@
+#!/bin/bash
+if [[ $# != 2 ]]; then
+  echo "Usage: $0 <access-request-filename> <ttl-in-secs>"
+  exit -1
+fi
+./2-grant-access-request $1 > /dev/null &&\
+sleep $2 > /dev/null &&\
+./3-revoke-access-request $1 > /dev/null &

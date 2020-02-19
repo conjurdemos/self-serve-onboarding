@@ -51,7 +51,7 @@ public class PASJava {
     // void initConnection() - initializes base server URL
     //
     public static void initConnection(String _pasServerHost) {
-	pasServerUrl = "https://" + _pasServerHost + "/PasswordVault/API";
+	pasServerUrl = "https://" + _pasServerHost + "/passwordvault/api";
 
 	// cuz sometimes the old way is the only way to get what you want
 	pasServerUrlClassic = "https://" + _pasServerHost + "/PasswordVault/WebServices/PIMServices.svc";
@@ -95,7 +95,7 @@ public class PASJava {
     // PASPlatform[] getPlatforms(filter)
     //
     public static PASPlatform[] getPlatforms(String _filter) {
-        String requestUrl = pasServerUrl + "/Platforms";
+        String requestUrl = pasServerUrl + "/platforms";
         String authHeader = pasSessionToken;
 
 	if(_filter != null) {

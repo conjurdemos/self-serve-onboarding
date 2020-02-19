@@ -1,0 +1,4 @@
+#!/bin/bash
+
+if [[ $# != 1 ]]; then echo "Usage: $0 <access-request-filename>"; exit -1; fi
+./_git-rest.sh submit $1

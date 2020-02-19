@@ -3,11 +3,11 @@
   "cpmName": "PasswordManager",
   "lobName": "CICD",
   "requestor": "Jody Hunt",
-  "projectName": "ProjectSWA",
-  "safeName": "ProjectSWA",
+  "projectName": "DemoProjectX",
+  "safeName": "DemoProjectX",
   "identities": [
     {
-      "identity": "!host swa-svc-acct"
+      "identity": "!host conjur/authn-k8s/dappoc/apps/testapps/service_account/test-app-summon-sidecar"
     }
   ],
   "accountRequests": [
@@ -16,24 +16,21 @@
       "platformId": "WinServerLocal",
       "address": "WIN-T4KRGHVATN4",
       "userName": "mdamon",
-      "secretType": "password",
-      "secretValue": "notjbourne"
+      "secretType": "password"
     },
     {
       "accountName": "OracleDB-Dev",
       "platformId": "Oracle",
       "address": "",
       "userName": "galgadot",
-      "secretType": "password",
-      "secretValue": "wonderwoman"
+      "secretType": "password"
     },
     {
       "accountName": "SQLServer-Dev",
-      "platformId": "MsSQL",
+      "platformId": "MSSql",
       "address": "",
       "userName": "jfavreau",
-      "secretType": "password",
-      "secretValue": "somoney"
+      "secretType": "password"
     }
   ]
 }

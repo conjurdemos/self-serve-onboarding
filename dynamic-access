@@ -1,6 +1,0 @@
-#!/bin/bash
-if [[ $# != 1 ]]; then
-  echo "Usage: $0 <ttl-in-secs>"
-  exit -1
-fi
-./grant > /dev/null && sleep $1 > /dev/null && ./revoke > /dev/null &

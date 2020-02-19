@@ -1,5 +1,7 @@
 #!/bin/bash
 
+if [[ $# != 1 ]]; then echo "Usage: $0 <access-request-filename>"; exit -1; fi
+
 source ./onboard-demo.config
 
 PAS_VAULT_NAME=$(cat $ACCESS_REQUEST_JSON_FILE | jq -r .vaultName)
